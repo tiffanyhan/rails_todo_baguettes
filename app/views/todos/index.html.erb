@@ -1,0 +1,8 @@
+<ul>
+  <% @todos.each do |todo| %>
+    <li>
+      <span><%= todo.title %></span>
+      <span><%= todo.due_date %></span>
+    </li>
+  <% end %>
+</ul>
