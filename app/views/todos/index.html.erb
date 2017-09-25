@@ -1,8 +1,15 @@
 <ul>
   <% @todos.each do |todo| %>
     <li>
-      <span><%= todo.title %></span>
+      <span><%= link_to todo.title, todo_path(todo) %></span>
       <span><%= todo.due_date %></span>
+      <span><%= link_to "show", todo_path(todo) %></span>
+      <span><%= link_to "edit", edit_todo_path(todo) %></span>
+      <!-- TODO need delete  -->
+      <span></span>
     </li>
   <% end %>
 </ul>
+<div>
+  <h1><%= link_to "create todo", new_todo_path %></h1>
+</div>
