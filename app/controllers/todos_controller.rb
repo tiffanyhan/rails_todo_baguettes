@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
   def index
-    @todos = Todo.all # todo: partition by completeness, due date
+    @incomplete_todos = Todo.where(completed: false).order(due_date: :desc)
+    @complete_todos = Todo.where(completed: true).order(due_date: :desc)
   end
 
   def show
@@ -36,7 +37,15 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    
+    @todo = Todo.find(params[:id])
+
+    if @todo.destroy
+      flash[:notice] = "You destroyed your sandwich"
+      redirect_to todos_path
+    else
+      flash[:notice] = "The delete failed."
+      redirect_to todos_path
+    end
   end
 
   private
