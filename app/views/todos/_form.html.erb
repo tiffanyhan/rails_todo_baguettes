@@ -1,7 +1,7 @@
 <% if @todo.errors.any? %>
   <ul>
   <% @todo.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+    <li class="error"><%= message %></li>
   <% end %>
   </ul>
 <% end %>
@@ -17,7 +17,7 @@
     <%= f.label :description %>
   </div>
   <div>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows: 5 %>
   </div>
   <div>
     <%= f.label :due_date %>

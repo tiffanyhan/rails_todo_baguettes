@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
   def index
-    @incomplete_todos = Todo.where(completed: false).order(due_date: :desc)
-    @complete_todos = Todo.where(completed: true).order(due_date: :desc)
+    @incomplete_todos = Todo.where(completed: false).order(due_date: :asc)
+    @complete_todos = Todo.where(completed: true).order(due_date: :asc)
   end
 
   def show
@@ -30,7 +30,7 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       flash[:notice] = "You added jelly to your baguette"
-      redirect_to todo_path(@todo)
+      redirect_to todos_path
     else
       render "edit"
     end
@@ -51,6 +51,6 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :due_date)
+    params.require(:todo).permit(:title, :description, :due_date, :completed)
   end
 end
