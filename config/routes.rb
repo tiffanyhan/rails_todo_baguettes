@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'todos#index'
 
   get "/login", to: "sessions#new"  
-  # post "/login", "sessions#create"  
-  # post "/logout", "sessions#destroy"  
+  post "/login", to: "sessions#create"  
+  post "/logout", to: "sessions#destroy"  
 
-  # get "/register", "users#new"
-  # post "/register", "users#create"  
+  get "/register", to: "users#new"
+  post "/register", to: "users#create"  
 
-  root 'todos#index'
   resources :todos
-  # resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update]
 end
