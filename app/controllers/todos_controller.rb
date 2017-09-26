@@ -15,7 +15,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      flash[:notice] = "You are getting baguettes" # todo fix this
+      flash[:notice] = "You are getting baguettes"
       redirect_to todos_path
     else
       render "new"
@@ -43,7 +43,7 @@ class TodosController < ApplicationController
       flash[:notice] = "You destroyed your sandwich"
       redirect_to todos_path
     else
-      flash[:notice] = "The delete failed."
+      flash[:notice] = "Generic error call Jay to fix."
       redirect_to todos_path
     end
   end
