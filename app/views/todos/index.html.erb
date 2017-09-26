@@ -1,0 +1,24 @@
+<ul>
+  <% @incomplete_todos.each do |todo| %>
+    <li>
+      <span><%= link_to todo.title, todo_path(todo, todo: {completed: true}), method: :patch %></span>
+      <span><%= todo.due_date %></span>
+      <span><%= link_to "show", todo_path(todo) %></span>
+      <span><%= link_to "edit", edit_todo_path(todo) %></span>
+      <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
+    </li>
+  <% end %>
+
+  <% @complete_todos.each do |todo| %>
+    <li class="completed">
+      <span><%= link_to todo.title, todo_path(todo, todo: {completed: false}), method: :patch %></span>
+      <span><%= todo.due_date %></span>
+      <span><%= link_to "show", todo_path(todo) %></span>
+      <span><%= link_to "edit", edit_todo_path(todo) %></span>
+      <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
+    </li>
+  <% end %>
+</ul>
+<div>
+  <h1><%= link_to "create todo", new_todo_path %></h1>
+</div>

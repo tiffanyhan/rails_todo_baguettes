@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  text-align: center;
+  font-size: 30px;
+  background: url('http://www.saveur.com/sites/saveur.com/files/styles/655_1x_/public/custom-touts/2015/09/4hr_baguette_2000x1500.jpg?itok=AsaXj3Gw&fc=50,50');
+ }
+
+ input,
+ textarea,
+ select,
+ input[type=submit] {
+  font-size: 30px;
+  padding: 10px;
+ }
+
+ li {
+  list-style: none;
+ }
+
+.completed {
+  text-decoration: line-through;
+}
+
+.error {
+  color: red;
+  background: pink;
+}
+
+.alert {
+  color: green;
+  background: lightgreen;
+}
+

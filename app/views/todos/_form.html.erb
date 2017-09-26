@@ -1,0 +1,29 @@
+<% if @todo.errors.any? %>
+  <ul>
+  <% @todo.errors.full_messages.each do |message| %>
+    <li class="error"><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @todo do |f| %>
+  <div>
+    <%= f.label :title %>
+  </div>
+  <div>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+  </div>
+  <div>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+  <div>
+    <%= f.label :due_date %>
+  </div>
+  <div>
+    <%= f.date_select :due_date %>
+  </div><br>
+  <%= f.submit %>
+<% end %>

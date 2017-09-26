@@ -1,0 +1,8 @@
+<h1><%= @todo.title %></h1>
+<h2><%= @todo.description %></h2>
+<h3><%= @todo.due_date %></h3>
+<% if @todo.completed %>
+  <strong><em>COMPLETED!!!</em></strong>
+<% else %>
+  <h4>Where is my baguette?!??!</h4>
+<% end %>
