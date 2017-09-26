@@ -1,0 +1,14 @@
+<h2>Baguette Profile: <%= current_user.username %></h2>
+
+<ul>
+  <li>E-mail:</li>
+  <li><%= current_user.email %>
+  <li><strong>Password Digest (nom nom nom):</strong></li>
+  <li><h3>(<em>shhhhhh</em> For your eyes only, please don't copy, k)</h3></li>
+  <li><%= current_user.password_digest %></li>
+</ul>
+
+<h3>To make a change, you must change yourself - Michael Scott</h3>
+<%= link_to "edit your sandwich", edit_user_path(current_user) %>
+
+<%= link_to "go back", root_path %>

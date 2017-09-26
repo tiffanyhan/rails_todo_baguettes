@@ -1,7 +1,9 @@
 class TodosController < ApplicationController
   def index
-    @incomplete_todos = Todo.where(completed: false).order(due_date: :asc)
-    @complete_todos = Todo.where(completed: true).order(due_date: :asc)
+    if logged_in?
+      @incomplete_todos = Todo.where(completed: false, user_id: current_user.id).order(due_date: :asc)
+      @complete_todos = Todo.where(completed: true, user_id: current_user.id).order(due_date: :asc)
+    end
   end
 
   def show
@@ -13,7 +15,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.build(todo_params)
     if @todo.save
       flash[:notice] = "You are getting baguettes"
       redirect_to todos_path
@@ -51,6 +53,6 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :due_date, :completed)
+    params.require(:todo).permit(:title, :description, :due_date, :completed, :user_id)
   end
 end

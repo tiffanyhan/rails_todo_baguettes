@@ -19,9 +19,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    @user = current_user
+    if @user.update(user_params)
+      flash[:notice] = "nice try you got it"
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   private
