@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show, :edit, :update]
+  before_action :authorized_user, only: [:show, :edit, :update]
+
   def new
     @user = User.new
   end
@@ -36,5 +39,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def authorized_user
+    if params[:id].to_i != current_user.id
+      flash[:error] = "You're not allowed to do that!"
+      redirect_to root_path
+    end
   end
 end

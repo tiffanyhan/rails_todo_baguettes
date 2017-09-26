@@ -1,4 +1,7 @@
 class TodosController < ApplicationController
+  before_action :require_login, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :find_todo, only: [:show, :edit, :update, :destroy]
+
   def index
     if logged_in?
       @incomplete_todos = Todo.where(completed: false, user_id: current_user.id).order(due_date: :asc)
@@ -7,7 +10,6 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
   end
 
   def new
@@ -25,11 +27,9 @@ class TodosController < ApplicationController
   end
 
   def edit
-    @todo = Todo.find(params[:id])
   end
 
   def update
-    @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       flash[:notice] = "You added jelly to your baguette"
       redirect_to todos_path
@@ -39,8 +39,6 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
-
     if @todo.destroy
       flash[:notice] = "You destroyed your sandwich"
       redirect_to todos_path
@@ -54,5 +52,13 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo).permit(:title, :description, :due_date, :completed, :user_id)
+  end
+
+  def find_todo
+    @todo = Todo.find_by(id: params[:id], user_id: current_user.id)
+    if !@todo
+      flash[:error] = "What do you think you're doing -- I saw that."
+      redirect_to root_path
+    end
   end
 end
