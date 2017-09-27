@@ -19,5 +19,9 @@
   <div>
     <%= f.date_select :due_date %>
   </div><br>
+
+  <%= f.label :category %>
+  <%= f.collection_select(:category_id, @categories, :id, :name) %>
+
   <%= f.submit %>
 <% end %>

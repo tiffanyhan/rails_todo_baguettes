@@ -14,6 +14,7 @@ class TodosController < ApplicationController
 
   def new
     @todo = Todo.new
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def create
@@ -27,6 +28,7 @@ class TodosController < ApplicationController
   end
 
   def edit
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def update
