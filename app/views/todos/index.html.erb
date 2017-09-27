@@ -9,6 +9,9 @@
         <span><%= todo.due_date %></span>
         <span><%= link_to "show", todo_path(todo) %></span>
         <span><%= link_to "edit", edit_todo_path(todo) %></span>
+        <% if todo.category %>
+          <span><%= link_to todo.category.name, category_path(todo.category) %></span>
+        <% end %>
         <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
       </li>
     <% end %>
@@ -19,6 +22,9 @@
         <span><%= todo.due_date %></span>
         <span><%= link_to "show", todo_path(todo) %></span>
         <span><%= link_to "edit", edit_todo_path(todo) %></span>
+        <% if todo.category %>
+          <span><%= link_to todo.category.name, category_path(todo.category) %></span>
+        <% end %>
         <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
       </li>
     <% end %>

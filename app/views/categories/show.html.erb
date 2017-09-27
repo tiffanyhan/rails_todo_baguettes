@@ -1,0 +1,24 @@
+<h2>Showing Baguettes for <%= @category.name %></h2>
+<ul>
+  <% @incomplete_todos.each do |todo| %>
+    <li>
+      <span><%= link_to todo.title, todo_path(todo, todo: {completed: true}), method: :patch %></span>
+      <span><%= todo.due_date %></span>
+      <span><%= link_to "show", todo_path(todo) %></span>
+      <span><%= link_to "edit", edit_todo_path(todo) %></span>
+      <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
+    </li>
+  <% end %>
+
+  <% @complete_todos.each do |todo| %>
+    <li class="completed">
+      <span><%= link_to todo.title, todo_path(todo, todo: {completed: false}), method: :patch %></span>
+      <span><%= todo.due_date %></span>
+      <span><%= link_to "show", todo_path(todo) %></span>
+      <span><%= link_to "edit", edit_todo_path(todo) %></span>
+      <span><%= link_to "delete", todo_path(todo), method: :delete %></span>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'go back', root_path %>
