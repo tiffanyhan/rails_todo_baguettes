@@ -18,6 +18,8 @@ class TodosController < ApplicationController
   end
 
   def create
+    # not having @categories here causes the collection_select method to throw an error if no category is selected
+    @categories = Category.where(user_id: current_user.id)
     @todo = current_user.todos.build(todo_params)
     if @todo.save
       flash[:notice] = "You are getting baguettes"
@@ -53,7 +55,7 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :due_date, :completed, :user_id)
+    params.require(:todo).permit(:title, :description, :due_date, :completed, :user_id, :category_id)
   end
 
   def find_todo

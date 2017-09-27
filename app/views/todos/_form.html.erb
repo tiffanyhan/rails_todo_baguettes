@@ -21,7 +21,7 @@
   </div><br>
 
   <%= f.label :category %>
-  <%= f.collection_select(:category_id, @categories, :id, :name) %>
+  <%= f.collection_select(:category_id, @categories, :id, :name, prompt: true) %>
 
   <%= f.submit %>
 <% end %>
