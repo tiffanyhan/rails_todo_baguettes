@@ -13,4 +13,8 @@ class Todo < ActiveRecord::Base
       title
     end
   end
+
+  def self.due_within_next_24_hours
+    where(due_date: Time.now..(Time.now + 24.hours))
+  end
 end
