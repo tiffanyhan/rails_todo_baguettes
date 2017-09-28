@@ -5,4 +5,12 @@ class Todo < ActiveRecord::Base
   validates :title, presence: true
   validates :due_date, presence: true
   validates :description, presence: true
+
+  def title_digest
+    if title.length > 10
+      title[0..9] + '...'
+    else
+      title
+    end
+  end
 end
